@@ -6,47 +6,46 @@
               android:layout_height="match_parent"
               android:gravity="center">
 
-    <Button
-        android:id="@+id/activity_instagram_settings_authorize"
+    <TableLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/activity_instagram_settings_authorize"
-        android:layout_marginBottom="10dp"/>
+        android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            style="?android:textAppearanceListItem"
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/activity_instagram_settings_authorize"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/activity_instagram_settings_feed_type"/>
+            android:text="@string/activity_instagram_settings_authorize"
+            android:layout_marginBottom="10dp"/>
 
-        <Spinner
-            android:id="@+id/activity_instagram_settings_feed_type_spinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <TableRow>
 
-    </LinearLayout>
+            <TextView
+                style="?android:textAppearanceListItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_instagram_settings_feed_type"/>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+            <Spinner
+                android:id="@+id/activity_instagram_settings_feed_type_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </TableRow>
 
-        <TextView
-            style="?android:textAppearanceListItem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/activity_instagram_settings_update_interval"/>
+        <TableRow>
 
-        <Spinner
-            android:id="@+id/activity_instagram_settings_interval_spinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            <TextView
+                style="?android:textAppearanceListItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_instagram_settings_update_interval"/>
 
-    </LinearLayout>
+            <Spinner
+                android:id="@+id/activity_instagram_settings_interval_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </TableRow>
+
+    </TableLayout>
 
 </LinearLayout>

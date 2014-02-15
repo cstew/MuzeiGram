@@ -15,7 +15,7 @@
             android:name=".controller.InstagramRemoteArtSource"
             android:icon="@drawable/ic_launcher"
             android:label="@string/app_name"
-            android:description="@string/app_name">
+            android:description="@string/app_description">
             <intent-filter>
                 <action android:name="com.google.android.apps.muzei.api.MuzeiArtSource"/>
             </intent-filter>

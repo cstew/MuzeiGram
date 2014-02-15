@@ -21,9 +21,6 @@ import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-/**
- * Created by chris on 2/15/14.
- */
 public class InstagramRemoteArtSource extends RemoteMuzeiArtSource {
     private static final String TAG = "InstagramRemoteArtSource";
 
@@ -117,11 +114,7 @@ public class InstagramRemoteArtSource extends RemoteMuzeiArtSource {
 
     private void setDefaultPicture() {
         publishArtwork(new Artwork.Builder()
-                .imageUri(Uri.parse("http://www.mrwallpaper.com/wallpapers/Waterfall-Landscape.jpg"))
-                .title("Example image")
-                .byline("Unknown person, c. 1980")
-                .viewIntent(new Intent(Intent.ACTION_VIEW,
-                        Uri.parse("http://example.com/imagedetails.html")))
+                .imageUri(Uri.parse("http://distilleryimage9.s3.amazonaws.com/1b7292fa63ab11e38fe4125be5bdf6a9_8.jpg"))
                 .build());
     }
 

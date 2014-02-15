@@ -50,6 +50,12 @@ public class InstagramSettingsActivity extends Activity {
         setupUpdateIntervalAdapter();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        sendUpdate();
+    }
+
     private void setupFeedTypeAdapter() {
         FeedType[] feedTypes = FeedType.values();
         FeedTypeAdapter adapter = new FeedTypeAdapter(this, feedTypes);
@@ -87,7 +93,6 @@ public class InstagramSettingsActivity extends Activity {
             FeedTypeAdapter adapter = (FeedTypeAdapter) mFeedTypeSpinner.getAdapter();
             FeedType feedType = adapter.getItem(position);
             mSettings.setFeedType(feedType);
-            sendUpdate();
         }
 
         @Override
@@ -102,7 +107,6 @@ public class InstagramSettingsActivity extends Activity {
             UpdateIntervalAdapter adapter = (UpdateIntervalAdapter) mUpdateIntervalSpinner.getAdapter();
             UpdateInterval updateInterval = adapter.getItem(position);
             mSettings.setUpdateInterval(updateInterval);
-            sendUpdate();
         }
 
         @Override
