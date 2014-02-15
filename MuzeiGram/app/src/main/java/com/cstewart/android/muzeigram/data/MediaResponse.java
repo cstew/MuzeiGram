@@ -4,9 +4,6 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-/**
- * Created by chris on 2/15/14.
- */
 public class MediaResponse {
 
     @SerializedName("data")

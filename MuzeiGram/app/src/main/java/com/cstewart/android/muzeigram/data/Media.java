@@ -2,9 +2,6 @@ package com.cstewart.android.muzeigram.data;
 
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by chris on 2/15/14.
- */
 public class Media {
 
     @SerializedName("id")

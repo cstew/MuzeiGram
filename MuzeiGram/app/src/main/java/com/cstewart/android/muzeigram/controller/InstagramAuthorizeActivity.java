@@ -8,16 +8,12 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.cstewart.android.muzeigram.R;
+import com.cstewart.android.muzeigram.data.Config;
 import com.cstewart.android.muzeigram.data.Settings;
 
-/**
- * Created by chris on 2/15/14.
- */
 public class InstagramAuthorizeActivity extends Activity {
 
-    private static final String AUTHORIZE_URL = "https://instagram.com/oauth/authorize/?client_id=f46b6a1920c34da59c87d99d9209d20a&redirect_uri=http://REDIRECT_URL&response_type=token";
     private static final String ACCESS_TOKEN_CONSTANT = "access_token=";
-
 
     private WebView mAuthorizeWebView;
 
@@ -33,7 +29,11 @@ public class InstagramAuthorizeActivity extends Activity {
         mAuthorizeWebView = (WebView) findViewById(R.id.activity_instagram_authorize_webview);
         mAuthorizeWebView.setWebViewClient(mWebViewClient);
 
-        mAuthorizeWebView.loadUrl(AUTHORIZE_URL);
+        mAuthorizeWebView.loadUrl(getAuthorizeUrl());
+    }
+
+    private String getAuthorizeUrl() {
+        return String.format(Config.AUTHORIZE_URL_FORMAT, Config.REDIRECT_URI, Config.CLIENT_ID);
     }
 
     private void aquireToken(String url) {
