@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 public class Settings {
 
     private static final String KEY_TOKEN = "token";
+    private static final String KEY_FEED_TYPE = "feedType";
     private static final String KEY_UPDATE_INTERVAL = "updateInterval";
 
     private SharedPreferences mSharedPreferences;
@@ -21,6 +22,15 @@ public class Settings {
 
     public String getInstagramToken() {
         return mSharedPreferences.getString(KEY_TOKEN, null);
+    }
+
+    public FeedType getFeedType() {
+        int feedTypeIndex = mSharedPreferences.getInt(KEY_FEED_TYPE, -1);
+        return FeedType.from(feedTypeIndex);
+    }
+
+    public void setFeedType(FeedType feedType) {
+        mSharedPreferences.edit().putInt(KEY_FEED_TYPE, feedType.getIndex()).apply();
     }
 
     public UpdateInterval getUpdateInterval() {

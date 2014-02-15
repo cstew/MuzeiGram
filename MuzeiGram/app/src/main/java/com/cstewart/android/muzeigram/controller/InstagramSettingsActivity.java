@@ -12,6 +12,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.cstewart.android.muzeigram.R;
+import com.cstewart.android.muzeigram.data.FeedType;
 import com.cstewart.android.muzeigram.data.Settings;
 import com.cstewart.android.muzeigram.data.UpdateInterval;
 
@@ -20,6 +21,7 @@ import java.util.Arrays;
 public class InstagramSettingsActivity extends Activity {
 
     private Button mAuthorizeButton;
+    private Spinner mFeedTypeSpinner;
     private Spinner mUpdateIntervalSpinner;
 
     private Settings mSettings;
@@ -34,9 +36,23 @@ public class InstagramSettingsActivity extends Activity {
         mAuthorizeButton = (Button) findViewById(R.id.activity_instagram_settings_authorize);
         mAuthorizeButton.setOnClickListener(mAuthorizeClickListener);
 
+        mFeedTypeSpinner = (Spinner) findViewById(R.id.activity_instagram_settings_feed_type_spinner);
+        mFeedTypeSpinner.setOnItemSelectedListener(mFeedTypeSelected);
+        setupFeedTypeAdapter();
+
         mUpdateIntervalSpinner = (Spinner) findViewById(R.id.activity_instagram_settings_interval_spinner);
         mUpdateIntervalSpinner.setOnItemSelectedListener(mUpdateIntervalSelected);
         setupUpdateIntervalAdapter();
+    }
+
+    private void setupFeedTypeAdapter() {
+        FeedType[] feedTypes = FeedType.values();
+        FeedTypeAdapter adapter = new FeedTypeAdapter(this, feedTypes);
+        mFeedTypeSpinner.setAdapter(adapter);
+
+        FeedType currentFeedType = mSettings.getFeedType();
+        int currentPosition = Arrays.asList(feedTypes).indexOf(currentFeedType);
+        mFeedTypeSpinner.setSelection(currentPosition);
     }
 
     private void setupUpdateIntervalAdapter() {
@@ -48,6 +64,20 @@ public class InstagramSettingsActivity extends Activity {
         int currentPosition = Arrays.asList(intervals).indexOf(currentInterval);
         mUpdateIntervalSpinner.setSelection(currentPosition);
     }
+
+    private AdapterView.OnItemSelectedListener mFeedTypeSelected = new AdapterView.OnItemSelectedListener() {
+        @Override
+        public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+            FeedTypeAdapter adapter = (FeedTypeAdapter) mFeedTypeSpinner.getAdapter();
+            FeedType feedType = adapter.getItem(position);
+            mSettings.setFeedType(feedType);
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> adapterView) {
+
+        }
+    };
 
     private AdapterView.OnItemSelectedListener mUpdateIntervalSelected = new AdapterView.OnItemSelectedListener() {
         @Override
@@ -63,10 +93,12 @@ public class InstagramSettingsActivity extends Activity {
         }
     };
 
-    private static class UpdateIntervalAdapter extends ArrayAdapter<UpdateInterval> {
+    private abstract static class SettingAdapter<T> extends ArrayAdapter<T> {
 
-        public UpdateIntervalAdapter(Context context, UpdateInterval[] updateIntervals) {
-            super(context, android.R.layout.simple_spinner_item, updateIntervals);
+        protected abstract void updateTitle(TextView textView, T item);
+
+        public SettingAdapter(Context context, T[] items) {
+            super(context, android.R.layout.simple_spinner_item, items);
             setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         }
 
@@ -83,10 +115,34 @@ public class InstagramSettingsActivity extends Activity {
         }
 
         private View updateText(View view, int position) {
-            UpdateInterval updateInterval = getItem(position);
+            T item = getItem(position);
             TextView textView = (TextView) view.findViewById(android.R.id.text1);
-            textView.setText(getContext().getString(updateInterval.getNameResId()));
+            updateTitle(textView, item);
             return view;
+        }
+    }
+
+    private static class FeedTypeAdapter extends SettingAdapter<FeedType> {
+
+        public FeedTypeAdapter(Context context, FeedType[] items) {
+            super(context, items);
+        }
+
+        @Override
+        protected void updateTitle(TextView textView, FeedType item) {
+            textView.setText(getContext().getString(item.getTitleResId()));
+        }
+    }
+
+    private static class UpdateIntervalAdapter extends SettingAdapter<UpdateInterval> {
+
+        public UpdateIntervalAdapter(Context context, UpdateInterval[] items) {
+            super(context, items);
+        }
+
+        @Override
+        protected void updateTitle(TextView textView, UpdateInterval item) {
+            textView.setText(getContext().getString(item.getNameResId()));
         }
     }
 

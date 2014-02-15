@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.cstewart.android.muzeigram.data.FeedType;
 import com.cstewart.android.muzeigram.data.Settings;
 import com.cstewart.android.muzeigram.data.InstagramService;
 import com.cstewart.android.muzeigram.data.Media;
@@ -51,10 +52,7 @@ public class InstagramRemoteArtSource extends RemoteMuzeiArtSource {
 
     private void loadPhotos() throws RetryException {
         String currentToken = (getCurrentArtwork() != null) ? getCurrentArtwork().getToken() : null;
-
-        RestAdapter restAdapter = getRestAdapater(mSettings.getInstagramToken());
-        InstagramService service = restAdapter.create(InstagramService.class);
-        MediaResponse response = service.getPopularPhotos();
+        MediaResponse response = getMedia();
 
         if (response == null || response.getMedia() == null) {
             throw new RetryException();
@@ -93,6 +91,28 @@ public class InstagramRemoteArtSource extends RemoteMuzeiArtSource {
                 .build());
 
         scheduleUpdate(System.currentTimeMillis() + mSettings.getUpdateInterval().getMilliseconds());
+    }
+
+    private MediaResponse getMedia() {
+        RestAdapter restAdapter = getRestAdapater(mSettings.getInstagramToken());
+        InstagramService service = restAdapter.create(InstagramService.class);
+
+        FeedType feedType = mSettings.getFeedType();
+        switch (feedType) {
+
+            case FEED:
+                return service.getFeedPhotos();
+
+            case LIKED:
+                return service.getLikedPhotos();
+
+            case PERSONAL:
+                return service.getUsersPhotos();
+
+            default:
+            case POPULAR:
+                return service.getPopularPhotos();
+        }
     }
 
     private void setDefaultPicture() {
