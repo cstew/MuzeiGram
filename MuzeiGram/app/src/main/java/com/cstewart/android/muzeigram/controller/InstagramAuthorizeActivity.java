@@ -33,7 +33,7 @@ public class InstagramAuthorizeActivity extends Activity {
     }
 
     private String getAuthorizeUrl() {
-        return String.format(Config.AUTHORIZE_URL_FORMAT, Config.REDIRECT_URI, Config.CLIENT_ID);
+        return String.format(Config.AUTHORIZE_URL_FORMAT, Config.CLIENT_ID, Config.REDIRECT_URI);
     }
 
     private void aquireToken(String url) {

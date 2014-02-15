@@ -3,6 +3,8 @@
     <string name="app_description">Photos from Instagram</string>
 
     <string name="activity_instagram_settings_authorize">Authorize Instagram Access</string>
+    <string name="activity_instagram_settings_authorize_set">Access Authorized</string>
+
     <string name="activity_instagram_settings_feed_type">Photo Type</string>
     <string name="activity_instagram_settings_update_interval">Update Interval</string>
 

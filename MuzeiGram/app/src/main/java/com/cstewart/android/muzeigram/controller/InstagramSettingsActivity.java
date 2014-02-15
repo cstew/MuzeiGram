@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -51,9 +52,23 @@ public class InstagramSettingsActivity extends Activity {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        updateAuthorizeUI();
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         sendUpdate();
+    }
+
+    private void updateAuthorizeUI() {
+        boolean authorized = !TextUtils.isEmpty(mSettings.getInstagramToken());
+
+        mAuthorizeButton.setText(authorized?
+                R.string.activity_instagram_settings_authorize_set
+                : R.string.activity_instagram_settings_authorize);
     }
 
     private void setupFeedTypeAdapter() {
