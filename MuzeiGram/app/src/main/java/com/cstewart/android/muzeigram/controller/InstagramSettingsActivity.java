@@ -1,6 +1,5 @@
 package com.cstewart.android.muzeigram.controller;
 
-import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -24,20 +23,20 @@ import com.google.android.apps.muzei.api.internal.ProtocolConstants;
 
 import java.util.Arrays;
 
-public class InstagramSettingsActivity extends Activity {
+import javax.inject.Inject;
+
+public class InstagramSettingsActivity extends MuzeiGramActivity {
 
     private Button mAuthorizeButton;
     private Spinner mFeedTypeSpinner;
     private Spinner mUpdateIntervalSpinner;
 
-    private Settings mSettings;
+    @Inject Settings mSettings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instagram_settings);
-
-        mSettings = new Settings(this);
 
         mAuthorizeButton = (Button) findViewById(R.id.activity_instagram_settings_authorize);
         mAuthorizeButton.setOnClickListener(mAuthorizeClickListener);

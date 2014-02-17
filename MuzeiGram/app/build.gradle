@@ -5,7 +5,7 @@ android {
     buildToolsVersion "19.0.1"
 
     defaultConfig {
-        minSdkVersion 14
+        minSdkVersion 17
         targetSdkVersion 19
         versionCode 1
         versionName "1.0"
@@ -22,6 +22,9 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
 
     compile 'com.google.android.apps.muzei:muzei-api:+'
+
+    compile 'com.squareup.dagger:dagger:1.2.0'
+    provided 'com.squareup.dagger:dagger-compiler:1.2.0'
 
     compile 'com.squareup.retrofit:retrofit:1.4.1'
     debugCompile 'com.squareup.retrofit:retrofit-mock:1.4.1'

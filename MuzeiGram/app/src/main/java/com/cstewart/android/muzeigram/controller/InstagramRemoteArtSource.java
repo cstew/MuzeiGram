@@ -5,26 +5,27 @@ import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.cstewart.android.muzeigram.MuzeiGramApplication;
 import com.cstewart.android.muzeigram.data.FeedType;
-import com.cstewart.android.muzeigram.data.Settings;
 import com.cstewart.android.muzeigram.data.InstagramService;
 import com.cstewart.android.muzeigram.data.Media;
 import com.cstewart.android.muzeigram.data.MediaResponse;
+import com.cstewart.android.muzeigram.data.Settings;
 import com.google.android.apps.muzei.api.Artwork;
 import com.google.android.apps.muzei.api.RemoteMuzeiArtSource;
 
 import java.util.Random;
 
-import retrofit.ErrorHandler;
-import retrofit.RequestInterceptor;
-import retrofit.RestAdapter;
+import javax.inject.Inject;
+
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 public class InstagramRemoteArtSource extends RemoteMuzeiArtSource {
     private static final String TAG = "InstagramRemoteArtSource";
 
-    private Settings mSettings;
+    @Inject Settings mSettings;
+    @Inject InstagramService mInstagramService;
 
     public InstagramRemoteArtSource() {
         super(TAG);
@@ -33,7 +34,7 @@ public class InstagramRemoteArtSource extends RemoteMuzeiArtSource {
     @Override
     public void onCreate() {
         super.onCreate();
-        mSettings = new Settings(this);
+        MuzeiGramApplication.get(this).inject(this);
 
         setUserCommands(BUILTIN_COMMAND_ID_NEXT_ARTWORK);
     }
@@ -41,13 +42,29 @@ public class InstagramRemoteArtSource extends RemoteMuzeiArtSource {
     @Override
     protected void onTryUpdate(int i) throws RetryException {
         if (TextUtils.isEmpty(mSettings.getInstagramToken())) {
-            setDefaultPicture();
-        } else {
+            loadDefaultPicture();
+            return;
+        }
+
+        try {
             loadPhotos();
+        } catch (RetrofitError retrofitError) {
+            Log.e(TAG, "Unable to load photos", retrofitError);
+            Response response = retrofitError.getResponse();
+            if (response == null) {
+                throw new RetryException();
+            }
+
+            int statusCode = response.getStatus();
+            if (retrofitError.isNetworkError()
+                    || (500 <= statusCode && statusCode < 600)) {
+                throw new RetryException();
+            }
+            scheduleNextUpdate();
         }
     }
 
-    private void loadPhotos() throws RetryException {
+    private void loadPhotos() throws RetryException, RetrofitError {
         String currentToken = (getCurrentArtwork() != null) ? getCurrentArtwork().getToken() : null;
         MediaResponse response = getMedia();
 
@@ -57,7 +74,7 @@ public class InstagramRemoteArtSource extends RemoteMuzeiArtSource {
 
         if (response.getMedia().size() == 0) {
             Log.w(TAG, "No photos returned from API.");
-            scheduleUpdate(System.currentTimeMillis() + mSettings.getUpdateInterval().getMilliseconds());
+            scheduleNextUpdate();
             return;
         }
 
@@ -87,64 +104,35 @@ public class InstagramRemoteArtSource extends RemoteMuzeiArtSource {
                         Uri.parse(photo.getLink())))
                 .build());
 
-        scheduleUpdate(System.currentTimeMillis() + mSettings.getUpdateInterval().getMilliseconds());
+        scheduleNextUpdate();
     }
 
-    private MediaResponse getMedia() {
-        RestAdapter restAdapter = getRestAdapater(mSettings.getInstagramToken());
-        InstagramService service = restAdapter.create(InstagramService.class);
-
+    private MediaResponse getMedia() throws RetrofitError {
         FeedType feedType = mSettings.getFeedType();
         switch (feedType) {
 
             case FEED:
-                return service.getFeedPhotos();
+                return mInstagramService.getFeedPhotos();
 
             case LIKED:
-                return service.getLikedPhotos();
+                return mInstagramService.getLikedPhotos();
 
             case PERSONAL:
-                return service.getUsersPhotos();
+                return mInstagramService.getUsersPhotos();
 
             default:
             case POPULAR:
-                return service.getPopularPhotos();
+                return mInstagramService.getPopularPhotos();
         }
     }
 
-    private void setDefaultPicture() {
+    private void loadDefaultPicture() {
         publishArtwork(new Artwork.Builder()
                 .imageUri(Uri.parse("http://distilleryimage9.s3.amazonaws.com/1b7292fa63ab11e38fe4125be5bdf6a9_8.jpg"))
                 .build());
     }
 
-    private RestAdapter getRestAdapater(final String accessToken) {
-        return new RestAdapter.Builder()
-                .setEndpoint("https://api.instagram.com")
-                .setRequestInterceptor(new RequestInterceptor() {
-                    @Override
-                    public void intercept(RequestFacade requestFacade) {
-                        requestFacade.addEncodedQueryParam("access_token", accessToken);
-                    }
-                })
-                .setErrorHandler(new ErrorHandler() {
-                    @Override
-                    public Throwable handleError(RetrofitError retrofitError) {
-                        Log.e(TAG, "received error: " + retrofitError.toString());
-                        Response response = retrofitError.getResponse();
-                        if (response == null) {
-                            return new RetryException();
-                        }
-
-                        int statusCode = response.getStatus();
-                        if (retrofitError.isNetworkError()
-                                || (500 <= statusCode && statusCode < 600)) {
-                            return new RetryException();
-                        }
-                        scheduleUpdate(System.currentTimeMillis() + mSettings.getUpdateInterval().getMilliseconds());
-                        return retrofitError;
-                    }
-                })
-                .build();
+    private void scheduleNextUpdate() {
+        scheduleUpdate(System.currentTimeMillis() + mSettings.getUpdateInterval().getMilliseconds());
     }
 }

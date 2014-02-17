@@ -1,6 +1,5 @@
 package com.cstewart.android.muzeigram.controller;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +10,13 @@ import com.cstewart.android.muzeigram.R;
 import com.cstewart.android.muzeigram.data.Config;
 import com.cstewart.android.muzeigram.data.Settings;
 
-public class InstagramAuthorizeActivity extends Activity {
+import javax.inject.Inject;
+
+public class InstagramAuthorizeActivity extends MuzeiGramActivity {
 
     private static final String ACCESS_TOKEN_CONSTANT = "access_token=";
+
+    @Inject Settings mSettings;
 
     private WebView mAuthorizeWebView;
 
@@ -41,7 +44,7 @@ public class InstagramAuthorizeActivity extends Activity {
         index = index + ACCESS_TOKEN_CONSTANT.length();
         String accessToken = url.substring(index, url.length());
 
-        new Settings(this).saveInstagramToken(accessToken);
+        mSettings.saveInstagramToken(accessToken);
         finish();
     }
 
