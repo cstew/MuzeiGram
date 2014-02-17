@@ -27,11 +27,11 @@ import javax.inject.Inject;
 
 public class InstagramSettingsActivity extends MuzeiGramActivity {
 
+    @Inject Settings mSettings;
+
     private Button mAuthorizeButton;
     private Spinner mFeedTypeSpinner;
     private Spinner mUpdateIntervalSpinner;
-
-    @Inject Settings mSettings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
