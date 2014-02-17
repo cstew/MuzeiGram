@@ -20,7 +20,7 @@
         <TableRow>
 
             <TextView
-                style="?android:textAppearanceListItem"
+                style="@style/SettingsRowTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/activity_instagram_settings_feed_type"/>
@@ -34,7 +34,7 @@
         <TableRow>
 
             <TextView
-                style="?android:textAppearanceListItem"
+                style="@style/SettingsRowTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/activity_instagram_settings_update_interval"/>

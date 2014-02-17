@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.cstewart.android.muzeigram.controller.InstagramAuthorizeActivity;
 import com.cstewart.android.muzeigram.controller.InstagramRemoteArtSource;
-import com.cstewart.android.muzeigram.controller.InstagramSettingsActivity;
+import com.cstewart.android.muzeigram.controller.settings.InstagramSettingsActivity;
 import com.cstewart.android.muzeigram.data.InstagramService;
 import com.cstewart.android.muzeigram.data.Settings;
 
