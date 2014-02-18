@@ -38,11 +38,17 @@ public class InstagramRemoteArtSource extends RemoteMuzeiArtSource {
         MuzeiGramApplication.get(this).inject(this);
 
         setUserCommands(BUILTIN_COMMAND_ID_NEXT_ARTWORK);
+
+        int description = R.string.app_description;
+        if (!isUserAuthenticated()) {
+            description = R.string.unauthorized_access_description;
+        }
+        setDescription(getString(description));
     }
 
     @Override
     protected void onTryUpdate(int i) throws RetryException {
-        if (TextUtils.isEmpty(mSettings.getInstagramToken())) {
+        if (!isUserAuthenticated()) {
             loadDefaultPicture();
             return;
         }
@@ -138,5 +144,9 @@ public class InstagramRemoteArtSource extends RemoteMuzeiArtSource {
 
     private void scheduleNextUpdate() {
         scheduleUpdate(System.currentTimeMillis() + mSettings.getUpdateInterval().getMilliseconds());
+    }
+
+    private boolean isUserAuthenticated() {
+        return !TextUtils.isEmpty(mSettings.getInstagramToken());
     }
 }

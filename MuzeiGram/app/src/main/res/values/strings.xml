@@ -2,6 +2,8 @@
     <string name="app_name">MuzeiGram</string>
     <string name="app_description">Photos from Instagram</string>
 
+    <string name="unauthorized_access_description">Authorize Instagram access in the settings below</string>
+
     <string name="default_image_title">Bro the cat</string>
     <string name="default_image_byline">Use the \"Authorize Instagram Access\" button in the plugin settings to enable Instagram access.</string>
 
