@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.cstewart.android.muzeigram.MuzeiGramApplication;
+import com.cstewart.android.muzeigram.R;
 import com.cstewart.android.muzeigram.data.FeedType;
 import com.cstewart.android.muzeigram.data.InstagramService;
 import com.cstewart.android.muzeigram.data.Media;
@@ -128,7 +129,10 @@ public class InstagramRemoteArtSource extends RemoteMuzeiArtSource {
 
     private void loadDefaultPicture() {
         publishArtwork(new Artwork.Builder()
-                .imageUri(Uri.parse("http://distilleryimage9.s3.amazonaws.com/1b7292fa63ab11e38fe4125be5bdf6a9_8.jpg"))
+                .imageUri(Uri.parse("http://i.imgur.com/lCxL00e.jpg"))
+                .title(getString(R.string.default_image_title))
+                .byline(getString(R.string.default_image_byline))
+                .token("initial")
                 .build());
     }
 
