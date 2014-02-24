@@ -61,8 +61,13 @@ public class Settings {
         collection.add("appletreeroad_luke", 11287532);
         collection.add("william_patino", 23516012);
         collection.add("curious2119", 157925);
-        collection.add("nasa", 528817151);
-        Integer.MAX_VALUE
+        collection.add("daveyoder", 294330511);
+        collection.add("skwii", 307146);
+        collection.add("samhorine", 765701);
+        collection.add("thiswildidea", 9868480);
+        collection.add("swopes", 1624554);
+        collection.add("dankhole", 166352);
+
         return collection;
     }
 

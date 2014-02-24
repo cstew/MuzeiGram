@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_rotate_interval"
+        android:title="@string/action_rotate_interval"
+        android:icon="@drawable/ic_action_rotate_interval"
+        android:showAsAction="always">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/action_rotate_interval_10s"
+                    android:title="@string/update_interval_ten_seconds"/>
+                <item
+                    android:id="@+id/action_rotate_interval_1m"
+                    android:title="@string/update_interval_minute"/>
+                <item
+                    android:id="@+id/action_rotate_interval_5m"
+                    android:title="@string/update_interval_five_minute"/>
+                <item
+                    android:id="@+id/action_rotate_interval_15m"
+                    android:title="@string/update_interval_fifteen_minute"/>
+                <item
+                    android:id="@+id/action_rotate_interval_30m"
+                    android:title="@string/update_interval_thirty_minute"/>
+                <item
+                    android:id="@+id/action_rotate_interval_1h"
+                    android:title="@string/update_interval_hour"/>
+                <item
+                    android:id="@+id/action_rotate_interval_3h"
+                    android:title="@string/update_interval_three_hours"/>
+                <item
+                    android:id="@+id/action_rotate_interval_6h"
+                    android:title="@string/update_interval_six_hours"/>
+                <item
+                    android:id="@+id/action_rotate_interval_12h"
+                    android:title="@string/update_interval_twelve_hours"/>
+                <item
+                    android:id="@+id/action_rotate_interval_1d"
+                    android:title="@string/update_interval_day"/>
+            </group>
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/action_remove_access"
+        android:title="@string/action_remove_access"
+        android:showAsAction="never"/>
+
+</menu>

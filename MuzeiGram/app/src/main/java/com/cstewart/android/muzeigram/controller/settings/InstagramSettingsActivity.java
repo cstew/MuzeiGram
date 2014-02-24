@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -28,18 +30,18 @@ import javax.inject.Inject;
 
 public class InstagramSettingsActivity extends MuzeiGramActivity {
 
-    private static final String TAG_ACCOUNTS_DIALOG = "AccountsDialog";
-
     @Inject Settings mSettings;
 
+    private View mDetailContainer;
     private Button mAuthorizeButton;
     private Spinner mFeedTypeSpinner;
-    private Spinner mUpdateIntervalSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instagram_settings);
+
+        mDetailContainer = findViewById(R.id.activity_instagram_settings_detail_container);
 
         mAuthorizeButton = (Button) findViewById(R.id.activity_instagram_settings_authorize);
         mAuthorizeButton.setOnClickListener(mAuthorizeClickListener);
@@ -47,21 +49,12 @@ public class InstagramSettingsActivity extends MuzeiGramActivity {
         mFeedTypeSpinner = (Spinner) findViewById(R.id.activity_instagram_settings_feed_type_spinner);
         mFeedTypeSpinner.setOnItemSelectedListener(mFeedTypeSelected);
         setupFeedTypeAdapter();
-
-        mUpdateIntervalSpinner = (Spinner) findViewById(R.id.activity_instagram_settings_interval_spinner);
-        mUpdateIntervalSpinner.setOnItemSelectedListener(mUpdateIntervalSelected);
-
-
-        Button usersButton = (Button) findViewById(R.id.activity_instagram_settings_users);
-        usersButton.setOnClickListener(mUsersClickListener);
-
-        setupUpdateIntervalAdapter();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        updateAuthorizeUI();
+        updateUI();
     }
 
     @Override
@@ -70,12 +63,66 @@ public class InstagramSettingsActivity extends MuzeiGramActivity {
         sendUpdate();
     }
 
-    private void updateAuthorizeUI() {
-        boolean authorized = !TextUtils.isEmpty(mSettings.getInstagramToken());
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        if (!isAuthorized()) {
+            return false;
+        }
 
-        mAuthorizeButton.setText(authorized?
-                R.string.activity_instagram_settings_authorize_set
-                : R.string.activity_instagram_settings_authorize);
+        getMenuInflater().inflate(R.menu.activity_instagram_settings, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        int menuId = mSettings.getUpdateInterval().getMenuResId();
+        if (menuId != 0) {
+            MenuItem item = menu.findItem(menuId);
+            if (item != null) {
+                item.setChecked(true);
+            }
+        }
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        UpdateInterval interval = UpdateInterval.fromMenuResId(item.getItemId());
+        if (interval != null) {
+            mSettings.setUpdateInterval(interval);
+            invalidateOptionsMenu();
+            return true;
+        }
+
+        switch (item.getItemId()) {
+
+            case android.R.id.home:
+                finish();
+                return true;
+
+            case R.id.action_remove_access:
+                mSettings.saveInstagramToken(null);
+                sendUpdate();
+                updateUI();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void updateUI() {
+        boolean isAuthorized = isAuthorized();
+
+        mDetailContainer.setVisibility(isAuthorized? View.VISIBLE : View.GONE);
+        mAuthorizeButton.setVisibility(isAuthorized? View.GONE : View.VISIBLE);
+
+        invalidateOptionsMenu();
+    }
+
+    private boolean isAuthorized() {
+        return !TextUtils.isEmpty(mSettings.getInstagramToken());
     }
 
     private void setupFeedTypeAdapter() {
@@ -86,16 +133,6 @@ public class InstagramSettingsActivity extends MuzeiGramActivity {
         FeedType currentFeedType = mSettings.getFeedType();
         int currentPosition = Arrays.asList(feedTypes).indexOf(currentFeedType);
         mFeedTypeSpinner.setSelection(currentPosition);
-    }
-
-    private void setupUpdateIntervalAdapter() {
-        UpdateInterval[] intervals = UpdateInterval.values();
-        UpdateIntervalAdapter adapter = new UpdateIntervalAdapter(this, intervals);
-        mUpdateIntervalSpinner.setAdapter(adapter);
-
-        UpdateInterval currentInterval = mSettings.getUpdateInterval();
-        int currentPosition = Arrays.asList(intervals).indexOf(currentInterval);
-        mUpdateIntervalSpinner.setSelection(currentPosition);
     }
 
     private void sendUpdate() {
@@ -123,20 +160,6 @@ public class InstagramSettingsActivity extends MuzeiGramActivity {
         }
     };
 
-    private AdapterView.OnItemSelectedListener mUpdateIntervalSelected = new AdapterView.OnItemSelectedListener() {
-        @Override
-        public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-            UpdateIntervalAdapter adapter = (UpdateIntervalAdapter) mUpdateIntervalSpinner.getAdapter();
-            UpdateInterval updateInterval = adapter.getItem(position);
-            mSettings.setUpdateInterval(updateInterval);
-        }
-
-        @Override
-        public void onNothingSelected(AdapterView<?> adapterView) {
-
-        }
-    };
-
     private static class FeedTypeAdapter extends SettingAdapter<FeedType> {
 
         public FeedTypeAdapter(Context context, FeedType[] items) {
@@ -149,18 +172,6 @@ public class InstagramSettingsActivity extends MuzeiGramActivity {
         }
     }
 
-    private static class UpdateIntervalAdapter extends SettingAdapter<UpdateInterval> {
-
-        public UpdateIntervalAdapter(Context context, UpdateInterval[] items) {
-            super(context, items);
-        }
-
-        @Override
-        protected void updateTitle(TextView textView, UpdateInterval item) {
-            textView.setText(getContext().getString(item.getNameResId()));
-        }
-    }
-
     private View.OnClickListener mAuthorizeClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -168,12 +179,4 @@ public class InstagramSettingsActivity extends MuzeiGramActivity {
         }
     };
 
-    private View.OnClickListener mUsersClickListener = new View.OnClickListener() {
-
-        @Override
-        public void onClick(View view) {
-            UserAccountsAlertDialogFragment accountsDialogFragment = UserAccountsAlertDialogFragment.newInstance();
-            accountsDialogFragment.show(getFragmentManager(), TAG_ACCOUNTS_DIALOG);
-        }
-    };
 }

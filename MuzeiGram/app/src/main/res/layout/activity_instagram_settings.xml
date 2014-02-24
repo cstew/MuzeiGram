@@ -6,18 +6,22 @@
               android:layout_height="match_parent"
               android:gravity="center">
 
-    <TableLayout
+    <Button
+        android:id="@+id/activity_instagram_settings_authorize"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:text="@string/activity_instagram_settings_authorize"/>
 
-        <Button
-            android:id="@+id/activity_instagram_settings_authorize"
-            android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/activity_instagram_settings_detail_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/activity_instagram_settings_authorize"
-            android:layout_marginBottom="10dp"/>
-
-        <TableRow>
+            android:orientation="horizontal">
 
             <TextView
                 style="@style/SettingsRowTitle"
@@ -29,29 +33,7 @@
                 android:id="@+id/activity_instagram_settings_feed_type_spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
-        </TableRow>
 
-        <TableRow>
-
-            <TextView
-                style="@style/SettingsRowTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/activity_instagram_settings_update_interval"/>
-
-            <Spinner
-                android:id="@+id/activity_instagram_settings_interval_spinner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-        </TableRow>
-
-    </TableLayout>
-
-    <Button
-        android:id="@+id/activity_instagram_settings_users"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Test"/>
-
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>
