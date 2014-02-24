@@ -6,13 +6,15 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.cstewart.android.muzeigram.R;
+
 abstract class SettingAdapter<T> extends ArrayAdapter<T> {
 
     protected abstract void updateTitle(TextView textView, T item);
 
     public SettingAdapter(Context context, T[] items) {
-        super(context, android.R.layout.simple_spinner_item, items);
-        setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        super(context, R.layout.view_spinner, items);
+        setDropDownViewResource(R.layout.view_spinner);
     }
 
     @Override

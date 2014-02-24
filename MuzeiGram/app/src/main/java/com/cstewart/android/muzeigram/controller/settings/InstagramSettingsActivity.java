@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cstewart.android.muzeigram.R;
 import com.cstewart.android.muzeigram.controller.InstagramAuthorizeActivity;
@@ -35,6 +36,7 @@ public class InstagramSettingsActivity extends MuzeiGramActivity {
     private View mDetailContainer;
     private Button mAuthorizeButton;
     private Spinner mFeedTypeSpinner;
+    private TextView mCustomUserTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,9 @@ public class InstagramSettingsActivity extends MuzeiGramActivity {
         mFeedTypeSpinner = (Spinner) findViewById(R.id.activity_instagram_settings_feed_type_spinner);
         mFeedTypeSpinner.setOnItemSelectedListener(mFeedTypeSelected);
         setupFeedTypeAdapter();
+
+        mCustomUserTextView = (TextView) findViewById(R.id.activity_instagram_settings_custom_users);
+        mCustomUserTextView.setOnClickListener(mCustomUserAccountClickListener);
     }
 
     @Override
@@ -118,6 +123,12 @@ public class InstagramSettingsActivity extends MuzeiGramActivity {
         mDetailContainer.setVisibility(isAuthorized? View.VISIBLE : View.GONE);
         mAuthorizeButton.setVisibility(isAuthorized? View.GONE : View.VISIBLE);
 
+        FeedType feedType = mSettings.getFeedType();
+        boolean isCustomType = (feedType == FeedType.CUSTOM);
+
+        mCustomUserTextView.setVisibility(isCustomType? View.VISIBLE : View.GONE);
+        mCustomUserTextView.setText(mSettings.getUserCollection().toString());
+
         invalidateOptionsMenu();
     }
 
@@ -152,6 +163,9 @@ public class InstagramSettingsActivity extends MuzeiGramActivity {
             FeedTypeAdapter adapter = (FeedTypeAdapter) mFeedTypeSpinner.getAdapter();
             FeedType feedType = adapter.getItem(position);
             mSettings.setFeedType(feedType);
+
+            updateUI();
+            sendUpdate();
         }
 
         @Override
@@ -176,6 +190,13 @@ public class InstagramSettingsActivity extends MuzeiGramActivity {
         @Override
         public void onClick(View view) {
             startActivity(InstagramAuthorizeActivity.newIntent(InstagramSettingsActivity.this));
+        }
+    };
+
+    private View.OnClickListener mCustomUserAccountClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Toast.makeText(InstagramSettingsActivity.this, "HAHA", Toast.LENGTH_SHORT).show();
         }
     };
 

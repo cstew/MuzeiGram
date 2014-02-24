@@ -16,6 +16,9 @@
         android:id="@+id/activity_instagram_settings_detail_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/popup_bg"
+        android:gravity="center"
+        android:padding="48dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -24,16 +27,26 @@
             android:orientation="horizontal">
 
             <TextView
-                style="@style/SettingsRowTitle"
+                style="?android:textAppearanceLarge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/activity_instagram_settings_feed_type"/>
 
             <Spinner
+                style="?android:textAppearanceLarge"
                 android:id="@+id/activity_instagram_settings_feed_type_spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
         </LinearLayout>
+
+        <TextView
+            style="?android:textAppearanceLarge"
+            android:textStyle="italic"
+            android:id="@+id/activity_instagram_settings_custom_users"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 </LinearLayout>

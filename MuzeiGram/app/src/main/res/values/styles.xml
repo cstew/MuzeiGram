@@ -52,6 +52,7 @@
         <!--<item name="android:listChoiceIndicatorMultiple">@drawable/btn_check</item>-->
         <item name="android:popupMenuStyle">@style/Widget.Muzei.PopupMenu</item>
         <item name="android:textAppearanceMedium">@style/TextAppearance.Muzei.Medium</item>
+        <item name="android:textAppearanceLarge">@style/TextAppearance.Muzei.Large</item>
         <item name="android:textAppearanceLargePopupMenu">@style/TextAppearance.Muzei.LargePopupMenu</item>
     </style>
 
@@ -80,6 +81,11 @@
     </style>
 
     <style name="TextAppearance.Muzei.Medium" parent="android:TextAppearance.Holo.Medium">
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:textColor">#fff</item>
+    </style>
+
+    <style name="TextAppearance.Muzei.Large" parent="android:TextAppearance.Holo.Large">
         <item name="android:fontFamily">sans-serif-condensed</item>
         <item name="android:textColor">#fff</item>
     </style>

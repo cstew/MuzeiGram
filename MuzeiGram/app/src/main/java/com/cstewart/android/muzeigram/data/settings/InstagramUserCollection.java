@@ -1,5 +1,7 @@
 package com.cstewart.android.muzeigram.data.settings;
 
+import android.text.TextUtils;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
@@ -16,6 +18,11 @@ public class InstagramUserCollection {
 
     public List<InstagramUser> getInstagramUsers() {
         return mInstagramUsers;
+    }
+
+    @Override
+    public String toString() {
+        return TextUtils.join(", ", mInstagramUsers);
     }
 
     public static class InstagramUser {

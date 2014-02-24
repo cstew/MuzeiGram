@@ -18,7 +18,6 @@ public class MuzeiGramApplication extends Application {
         super.onCreate();
 
         mObjectGraph = ObjectGraph.create(new MuzeiGramModule(this));
-
     }
 
     public void inject(Object object) {
