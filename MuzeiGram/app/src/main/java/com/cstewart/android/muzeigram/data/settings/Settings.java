@@ -1,14 +1,17 @@
-package com.cstewart.android.muzeigram.data;
+package com.cstewart.android.muzeigram.data.settings;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+
+import com.google.gson.Gson;
 
 public class Settings {
 
     private static final String KEY_TOKEN = "token";
     private static final String KEY_FEED_TYPE = "feedType";
     private static final String KEY_UPDATE_INTERVAL = "updateInterval";
+    private static final String KEY_INSTAGRAM_USERS = "InstagramUsers";
 
     private SharedPreferences mSharedPreferences;
 
@@ -40,6 +43,32 @@ public class Settings {
 
     public void setUpdateInterval(UpdateInterval updateInterval) {
         mSharedPreferences.edit().putInt(KEY_UPDATE_INTERVAL, updateInterval.getMilliseconds()).apply();
+    }
+
+    public InstagramUserCollection getUserCollection() {
+//        String users = mSharedPreferences.getString(KEY_INSTAGRAM_USERS, null);
+//        if (users == null) {
+            return getDefaultUserCollection();
+//        }
+//
+//        Gson gson = new Gson();
+//        return gson.fromJson(users, InstagramUserCollection.class);
+    }
+
+    private InstagramUserCollection getDefaultUserCollection() {
+        InstagramUserCollection collection = new InstagramUserCollection();
+        collection.add("sserkan34", 829197244);
+        collection.add("appletreeroad_luke", 11287532);
+        collection.add("william_patino", 23516012);
+        collection.add("curious2119", 157925);
+        collection.add("nasa", 528817151);
+        Integer.MAX_VALUE
+        return collection;
+    }
+
+    private void setUserCollection(InstagramUserCollection userCollection) {
+        String userJson = new Gson().toJson(userCollection);
+        mSharedPreferences.edit().putString(KEY_INSTAGRAM_USERS, userJson).apply();
     }
 
 }

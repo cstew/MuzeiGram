@@ -8,7 +8,7 @@ import android.webkit.WebViewClient;
 
 import com.cstewart.android.muzeigram.R;
 import com.cstewart.android.muzeigram.data.Config;
-import com.cstewart.android.muzeigram.data.Settings;
+import com.cstewart.android.muzeigram.data.settings.Settings;
 
 import javax.inject.Inject;
 

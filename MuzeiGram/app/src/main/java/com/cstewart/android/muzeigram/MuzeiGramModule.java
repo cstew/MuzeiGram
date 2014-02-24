@@ -5,8 +5,9 @@ import android.content.Context;
 import com.cstewart.android.muzeigram.controller.InstagramAuthorizeActivity;
 import com.cstewart.android.muzeigram.controller.InstagramRemoteArtSource;
 import com.cstewart.android.muzeigram.controller.settings.InstagramSettingsActivity;
-import com.cstewart.android.muzeigram.data.InstagramService;
-import com.cstewart.android.muzeigram.data.Settings;
+import com.cstewart.android.muzeigram.controller.settings.UserAccountsAlertDialogFragment;
+import com.cstewart.android.muzeigram.data.instagram.InstagramService;
+import com.cstewart.android.muzeigram.data.settings.Settings;
 
 import javax.inject.Singleton;
 
@@ -19,7 +20,8 @@ import retrofit.RestAdapter;
         injects = {
                 InstagramRemoteArtSource.class,
                 InstagramAuthorizeActivity.class,
-                InstagramSettingsActivity.class
+                InstagramSettingsActivity.class,
+                UserAccountsAlertDialogFragment.class
         }
 )
 public class MuzeiGramModule {

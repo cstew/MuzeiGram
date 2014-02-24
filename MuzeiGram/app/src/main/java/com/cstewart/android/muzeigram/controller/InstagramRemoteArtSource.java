@@ -7,14 +7,16 @@ import android.util.Log;
 
 import com.cstewart.android.muzeigram.MuzeiGramApplication;
 import com.cstewart.android.muzeigram.R;
-import com.cstewart.android.muzeigram.data.FeedType;
-import com.cstewart.android.muzeigram.data.InstagramService;
-import com.cstewart.android.muzeigram.data.Media;
-import com.cstewart.android.muzeigram.data.MediaResponse;
-import com.cstewart.android.muzeigram.data.Settings;
+import com.cstewart.android.muzeigram.data.instagram.InstagramService;
+import com.cstewart.android.muzeigram.data.instagram.Media;
+import com.cstewart.android.muzeigram.data.instagram.MediaResponse;
+import com.cstewart.android.muzeigram.data.settings.FeedType;
+import com.cstewart.android.muzeigram.data.settings.InstagramUserCollection;
+import com.cstewart.android.muzeigram.data.settings.Settings;
 import com.google.android.apps.muzei.api.Artwork;
 import com.google.android.apps.muzei.api.RemoteMuzeiArtSource;
 
+import java.util.List;
 import java.util.Random;
 
 import javax.inject.Inject;
@@ -116,7 +118,11 @@ public class InstagramRemoteArtSource extends RemoteMuzeiArtSource {
 
     private MediaResponse getMedia() throws RetrofitError {
         FeedType feedType = mSettings.getFeedType();
+
         switch (feedType) {
+
+            case CUSTOM:
+                return getCustomMediaResponse();
 
             case FEED:
                 return mInstagramService.getFeedPhotos();
@@ -125,12 +131,23 @@ public class InstagramRemoteArtSource extends RemoteMuzeiArtSource {
                 return mInstagramService.getLikedPhotos();
 
             case PERSONAL:
-                return mInstagramService.getUsersPhotos();
+                return mInstagramService.getPersonalPhotos();
 
             default:
             case POPULAR:
                 return mInstagramService.getPopularPhotos();
         }
+    }
+
+    private MediaResponse getCustomMediaResponse() {
+        InstagramUserCollection userCollection = mSettings.getUserCollection();
+        List<InstagramUserCollection.InstagramUser> instagramUsers = userCollection.getInstagramUsers();
+        int userSize = instagramUsers.size();
+
+        Random random = new Random();
+        InstagramUserCollection.InstagramUser randomUser = instagramUsers.get(random.nextInt(userSize));
+
+        return mInstagramService.getUserPhotos(randomUser.getUserId());
     }
 
     private void loadDefaultPicture() {

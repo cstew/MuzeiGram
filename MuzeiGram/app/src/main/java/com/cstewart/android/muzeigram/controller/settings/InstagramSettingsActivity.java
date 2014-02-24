@@ -16,9 +16,9 @@ import com.cstewart.android.muzeigram.R;
 import com.cstewart.android.muzeigram.controller.InstagramAuthorizeActivity;
 import com.cstewart.android.muzeigram.controller.InstagramRemoteArtSource;
 import com.cstewart.android.muzeigram.controller.MuzeiGramActivity;
-import com.cstewart.android.muzeigram.data.FeedType;
-import com.cstewart.android.muzeigram.data.Settings;
-import com.cstewart.android.muzeigram.data.UpdateInterval;
+import com.cstewart.android.muzeigram.data.settings.FeedType;
+import com.cstewart.android.muzeigram.data.settings.Settings;
+import com.cstewart.android.muzeigram.data.settings.UpdateInterval;
 import com.google.android.apps.muzei.api.MuzeiArtSource;
 import com.google.android.apps.muzei.api.internal.ProtocolConstants;
 
@@ -27,6 +27,8 @@ import java.util.Arrays;
 import javax.inject.Inject;
 
 public class InstagramSettingsActivity extends MuzeiGramActivity {
+
+    private static final String TAG_ACCOUNTS_DIALOG = "AccountsDialog";
 
     @Inject Settings mSettings;
 
@@ -48,6 +50,11 @@ public class InstagramSettingsActivity extends MuzeiGramActivity {
 
         mUpdateIntervalSpinner = (Spinner) findViewById(R.id.activity_instagram_settings_interval_spinner);
         mUpdateIntervalSpinner.setOnItemSelectedListener(mUpdateIntervalSelected);
+
+
+        Button usersButton = (Button) findViewById(R.id.activity_instagram_settings_users);
+        usersButton.setOnClickListener(mUsersClickListener);
+
         setupUpdateIntervalAdapter();
     }
 
@@ -158,6 +165,15 @@ public class InstagramSettingsActivity extends MuzeiGramActivity {
         @Override
         public void onClick(View view) {
             startActivity(InstagramAuthorizeActivity.newIntent(InstagramSettingsActivity.this));
+        }
+    };
+
+    private View.OnClickListener mUsersClickListener = new View.OnClickListener() {
+
+        @Override
+        public void onClick(View view) {
+            UserAccountsAlertDialogFragment accountsDialogFragment = UserAccountsAlertDialogFragment.newInstance();
+            accountsDialogFragment.show(getFragmentManager(), TAG_ACCOUNTS_DIALOG);
         }
     };
 }

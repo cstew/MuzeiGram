@@ -1,4 +1,4 @@
-package com.cstewart.android.muzeigram.data;
+package com.cstewart.android.muzeigram.data.instagram;
 
 import com.google.gson.annotations.SerializedName;
 
