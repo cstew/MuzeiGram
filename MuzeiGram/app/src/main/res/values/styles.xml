@@ -17,8 +17,6 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <!-- Muzei activity -->
-
     <style name="Theme.MuzeiActivity" parent="Theme.Muzei.Wallpaper">
         <item name="android:windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
@@ -34,6 +32,12 @@
         <item name="android:titleTextStyle">?android:textAppearanceMedium</item>
         <item name="android:icon">@drawable/ic_launcher</item>
         <item name="android:displayOptions">homeAsUp|showTitle|showHome</item>
+    </style>
+
+    <style name="Theme.Muzei.UserChooser" parent="Theme.Muzei">
+        <item name="android:windowBackground">@color/user_chooser_background</item>
+        <item name="android:actionBarStyle">@style/GallerySettings.ActionBar</item>
+        <item name="android:windowActionBarOverlay">true</item>
     </style>
 
     <!-- Global -->

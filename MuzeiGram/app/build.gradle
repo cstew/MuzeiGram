@@ -28,4 +28,6 @@ dependencies {
 
     compile 'com.squareup.retrofit:retrofit:1.4.1'
     debugCompile 'com.squareup.retrofit:retrofit-mock:1.4.1'
+
+    compile 'com.squareup.picasso:picasso:2.2.0'
 }

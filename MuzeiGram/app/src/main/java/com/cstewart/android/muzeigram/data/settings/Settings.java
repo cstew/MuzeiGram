@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.cstewart.android.muzeigram.data.instagram.InstagramUser;
+import com.cstewart.android.muzeigram.data.instagram.InstagramUserCollection;
 import com.google.gson.Gson;
 
 public class Settings {
@@ -57,17 +59,16 @@ public class Settings {
 
     private InstagramUserCollection getDefaultUserCollection() {
         InstagramUserCollection collection = new InstagramUserCollection();
-        collection.add("sserkan34", 829197244);
-        collection.add("appletreeroad_luke", 11287532);
-        collection.add("william_patino", 23516012);
-        collection.add("curious2119", 157925);
-        collection.add("daveyoder", 294330511);
-        collection.add("skwii", 307146);
-        collection.add("samhorine", 765701);
-        collection.add("thiswildidea", 9868480);
-        collection.add("swopes", 1624554);
-        collection.add("dankhole", 166352);
-
+        collection.addUser(new InstagramUser(829197244, "sserkan34", "Serkan Demirci", "http://images.ak.instagram.com/profiles/profile_28569248_75sq_1390288079.jpg"));
+        collection.addUser(new InstagramUser(11287532, "appletreeroad_luke", "Luke Drew", "http://images.ak.instagram.com/profiles/profile_11287532_75sq_1364933678.jpg"));
+        collection.addUser(new InstagramUser(23516012, "william_patino", "Will Patino", "http://images.ak.instagram.com/profiles/profile_23516012_75sq_1379415978.jpg"));
+        collection.addUser(new InstagramUser(157925, "curious2119", "Tim Landis", "http://images.ak.instagram.com/profiles/profile_157925_75sq_1392511691.jpg"));
+        collection.addUser(new InstagramUser(294330511, "daveyoder", "Dave Yoder", "http://images.ak.instagram.com/profiles/profile_294330511_75sq_1360293704.jpg"));
+        collection.addUser(new InstagramUser(307146, "skwii", "Jussi Ulkuniemi", "http://images.ak.instagram.com/profiles/profile_307146_75sq_1374516761.jpg"));
+        collection.addUser(new InstagramUser(765701, "samhorine", "Sam Horine", "http://images.ak.instagram.com/profiles/profile_765701_75sq_1380778905.jpg"));
+        collection.addUser(new InstagramUser(9868480, "thiswildidea", "Theron Humphrey", "http://images.ak.instagram.com/profiles/profile_9868480_75sq_1364478484.jpg"));
+        collection.addUser(new InstagramUser(1624554, "swopes", "Elise Swopes", "http://images.ak.instagram.com/profiles/profile_1624554_75sq_1390583720.jpg"));
+        collection.addUser(new InstagramUser(166352, "dankhole", "dan cole", "http://images.ak.instagram.com/profiles/profile_166352_75sq_1364842626.jpg"));
         return collection;
     }
 

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:gravity="center_vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/view_instagram_user_image"
+        android:layout_width="96dp"
+        android:layout_height="96dp"/>
+
+    <TextView
+        style="?android:textAppearanceLarge"
+        android:id="@+id/view_instagram_user_name"
+        android:layout_marginLeft="12dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
+
+</LinearLayout>

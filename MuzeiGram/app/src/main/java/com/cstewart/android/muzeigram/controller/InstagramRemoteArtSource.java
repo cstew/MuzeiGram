@@ -8,10 +8,11 @@ import android.util.Log;
 import com.cstewart.android.muzeigram.MuzeiGramApplication;
 import com.cstewart.android.muzeigram.R;
 import com.cstewart.android.muzeigram.data.instagram.InstagramService;
+import com.cstewart.android.muzeigram.data.instagram.InstagramUser;
+import com.cstewart.android.muzeigram.data.instagram.InstagramUserCollection;
 import com.cstewart.android.muzeigram.data.instagram.Media;
 import com.cstewart.android.muzeigram.data.instagram.MediaResponse;
 import com.cstewart.android.muzeigram.data.settings.FeedType;
-import com.cstewart.android.muzeigram.data.settings.InstagramUserCollection;
 import com.cstewart.android.muzeigram.data.settings.Settings;
 import com.google.android.apps.muzei.api.Artwork;
 import com.google.android.apps.muzei.api.RemoteMuzeiArtSource;
@@ -141,11 +142,11 @@ public class InstagramRemoteArtSource extends RemoteMuzeiArtSource {
 
     private MediaResponse getCustomMediaResponse() {
         InstagramUserCollection userCollection = mSettings.getUserCollection();
-        List<InstagramUserCollection.InstagramUser> instagramUsers = userCollection.getInstagramUsers();
+        List<InstagramUser> instagramUsers = userCollection.getInstagramUsers();
         int userSize = instagramUsers.size();
 
         Random random = new Random();
-        InstagramUserCollection.InstagramUser randomUser = instagramUsers.get(random.nextInt(userSize));
+        InstagramUser randomUser = instagramUsers.get(random.nextInt(userSize));
 
         return mInstagramService.getUserPhotos(randomUser.getUserId());
     }

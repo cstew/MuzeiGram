@@ -38,6 +38,9 @@
 
         <activity android:name=".controller.InstagramAuthorizeActivity" />
 
+        <activity android:name=".controller.settings.InstagramUserChooserActivity"
+                  android:theme="@style/Theme.Muzei.UserChooser" />
+
     </application>
 
 </manifest>

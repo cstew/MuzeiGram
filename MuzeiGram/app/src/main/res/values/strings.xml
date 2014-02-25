@@ -34,4 +34,6 @@
     <string name="update_interval_day">Every day</string>
 
     <string name="user_accounts_dialog_title">Instagram Accounts</string>
+
+    <string name="user_chooser_search_title">Search Instagram Users</string>
 </resources>

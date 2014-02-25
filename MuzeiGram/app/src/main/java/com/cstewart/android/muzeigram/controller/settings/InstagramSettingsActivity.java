@@ -13,7 +13,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.cstewart.android.muzeigram.R;
 import com.cstewart.android.muzeigram.controller.InstagramAuthorizeActivity;
@@ -196,7 +195,8 @@ public class InstagramSettingsActivity extends MuzeiGramActivity {
     private View.OnClickListener mCustomUserAccountClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Toast.makeText(InstagramSettingsActivity.this, "HAHA", Toast.LENGTH_SHORT).show();
+            Intent userChooser = InstagramUserChooserActivity.newIntent(InstagramSettingsActivity.this);
+            startActivity(userChooser);
         }
     };
 

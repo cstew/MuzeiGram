@@ -32,6 +32,6 @@ public enum FeedType {
             }
         }
 
-        return FeedType.POPULAR;
+        return FeedType.CUSTOM;
     }
 }

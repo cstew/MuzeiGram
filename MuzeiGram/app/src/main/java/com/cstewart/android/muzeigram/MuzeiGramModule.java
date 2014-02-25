@@ -5,7 +5,7 @@ import android.content.Context;
 import com.cstewart.android.muzeigram.controller.InstagramAuthorizeActivity;
 import com.cstewart.android.muzeigram.controller.InstagramRemoteArtSource;
 import com.cstewart.android.muzeigram.controller.settings.InstagramSettingsActivity;
-import com.cstewart.android.muzeigram.controller.settings.UserAccountsAlertDialogFragment;
+import com.cstewart.android.muzeigram.controller.settings.InstagramUserChooserActivity;
 import com.cstewart.android.muzeigram.data.instagram.InstagramService;
 import com.cstewart.android.muzeigram.data.settings.Settings;
 
@@ -21,7 +21,7 @@ import retrofit.RestAdapter;
                 InstagramRemoteArtSource.class,
                 InstagramAuthorizeActivity.class,
                 InstagramSettingsActivity.class,
-                UserAccountsAlertDialogFragment.class
+                InstagramUserChooserActivity.class
         }
 )
 public class MuzeiGramModule {
