@@ -48,18 +48,17 @@ public class Settings {
     }
 
     public InstagramUserCollection getUserCollection() {
-//        String users = mSharedPreferences.getString(KEY_INSTAGRAM_USERS, null);
-//        if (users == null) {
+        String users = mSharedPreferences.getString(KEY_INSTAGRAM_USERS, null);
+        if (users == null) {
             return getDefaultUserCollection();
-//        }
-//
-//        Gson gson = new Gson();
-//        return gson.fromJson(users, InstagramUserCollection.class);
+        }
+
+        Gson gson = new Gson();
+        return gson.fromJson(users, InstagramUserCollection.class);
     }
 
     private InstagramUserCollection getDefaultUserCollection() {
         InstagramUserCollection collection = new InstagramUserCollection();
-        collection.addUser(new InstagramUser(829197244, "sserkan34", "Serkan Demirci", "http://images.ak.instagram.com/profiles/profile_28569248_75sq_1390288079.jpg"));
         collection.addUser(new InstagramUser(11287532, "appletreeroad_luke", "Luke Drew", "http://images.ak.instagram.com/profiles/profile_11287532_75sq_1364933678.jpg"));
         collection.addUser(new InstagramUser(23516012, "william_patino", "Will Patino", "http://images.ak.instagram.com/profiles/profile_23516012_75sq_1379415978.jpg"));
         collection.addUser(new InstagramUser(157925, "curious2119", "Tim Landis", "http://images.ak.instagram.com/profiles/profile_157925_75sq_1392511691.jpg"));
@@ -69,10 +68,11 @@ public class Settings {
         collection.addUser(new InstagramUser(9868480, "thiswildidea", "Theron Humphrey", "http://images.ak.instagram.com/profiles/profile_9868480_75sq_1364478484.jpg"));
         collection.addUser(new InstagramUser(1624554, "swopes", "Elise Swopes", "http://images.ak.instagram.com/profiles/profile_1624554_75sq_1390583720.jpg"));
         collection.addUser(new InstagramUser(166352, "dankhole", "dan cole", "http://images.ak.instagram.com/profiles/profile_166352_75sq_1364842626.jpg"));
+        collection.addUser(new InstagramUser(829197244, "sserkan34", "Serkan Demirci", "http://images.ak.instagram.com/profiles/profile_28569248_75sq_1390288079.jpg"));
         return collection;
     }
 
-    private void setUserCollection(InstagramUserCollection userCollection) {
+    public void saveUserCollection(InstagramUserCollection userCollection) {
         String userJson = new Gson().toJson(userCollection);
         mSharedPreferences.edit().putString(KEY_INSTAGRAM_USERS, userJson).apply();
     }

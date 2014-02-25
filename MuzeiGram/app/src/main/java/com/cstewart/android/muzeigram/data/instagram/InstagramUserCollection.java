@@ -20,6 +20,10 @@ public class InstagramUserCollection {
         mInstagramUsers.add(user);
     }
 
+    public void removeUser(InstagramUser user) {
+        mInstagramUsers.remove(user);
+    }
+
     @Override
     public String toString() {
         return TextUtils.join(", ", mInstagramUsers);

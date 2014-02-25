@@ -36,10 +36,17 @@
             android:exported="true"
             android:theme="@style/Theme.Muzei.Settings"/>
 
-        <activity android:name=".controller.InstagramAuthorizeActivity" />
+        <activity android:name=".controller.InstagramAuthorizeActivity"/>
 
-        <activity android:name=".controller.settings.InstagramUserChooserActivity"
-                  android:theme="@style/Theme.Muzei.UserChooser" />
+        <activity
+            android:name=".controller.settings.InstagramUserChooserActivity"
+            android:theme="@style/Theme.Muzei.UserChooser">
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/user_searchable" />
+
+        </activity>
 
     </application>
 
