@@ -68,7 +68,7 @@ public class Settings {
         collection.addUser(new InstagramUser(9868480, "thiswildidea", "Theron Humphrey", "http://images.ak.instagram.com/profiles/profile_9868480_75sq_1364478484.jpg"));
         collection.addUser(new InstagramUser(1624554, "swopes", "Elise Swopes", "http://images.ak.instagram.com/profiles/profile_1624554_75sq_1390583720.jpg"));
         collection.addUser(new InstagramUser(166352, "dankhole", "dan cole", "http://images.ak.instagram.com/profiles/profile_166352_75sq_1364842626.jpg"));
-        collection.addUser(new InstagramUser(829197244, "sserkan34", "Serkan Demirci", "http://images.ak.instagram.com/profiles/profile_28569248_75sq_1390288079.jpg"));
+        collection.addUser(new InstagramUser(28569248, "sserkan34", "Serkan Demirci", "http://images.ak.instagram.com/profiles/profile_28569248_75sq_1390288079.jpg"));
         return collection;
     }
 
