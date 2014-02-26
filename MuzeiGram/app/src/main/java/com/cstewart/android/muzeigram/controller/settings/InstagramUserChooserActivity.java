@@ -1,18 +1,11 @@
 package com.cstewart.android.muzeigram.controller.settings;
 
-import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
+import android.view.MenuItem;
 import android.widget.ListView;
-import android.widget.SearchView;
-import android.widget.TextView;
 
 import com.cstewart.android.muzeigram.R;
 import com.cstewart.android.muzeigram.controller.MuzeiGramActivity;
@@ -20,7 +13,6 @@ import com.cstewart.android.muzeigram.controller.settings.swipe.SwipeDismissList
 import com.cstewart.android.muzeigram.data.instagram.InstagramUser;
 import com.cstewart.android.muzeigram.data.instagram.InstagramUserCollection;
 import com.cstewart.android.muzeigram.data.settings.Settings;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -57,11 +49,20 @@ public class InstagramUserChooserActivity extends MuzeiGramActivity {
         super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.activity_instagram_user_chooser, menu);
 
-        // Set up SearchView
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView = (SearchView) menu.findItem(R.id.activity_instagram_user_chooser_searchview).getActionView();
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+
+            case R.id.activity_instagram_user_chooser_searchview:
+                startActivity(InstagramUserSearchActivity.newIntent(this));
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private void setupAdapter() {
@@ -69,30 +70,6 @@ public class InstagramUserChooserActivity extends MuzeiGramActivity {
         List<InstagramUser> users = mUserCollection.getInstagramUsers();
         mAdapter = new UserAdapter(this, users);
         mUserList.setAdapter(mAdapter);
-    }
-
-    private class UserAdapter extends ArrayAdapter<InstagramUser> {
-
-        public UserAdapter(Context context, List<InstagramUser> users) {
-            super(context, 0, users);
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            if (convertView == null) {
-                convertView = LayoutInflater.from(getContext()).inflate(R.layout.view_instagram_user, parent, false);
-            }
-
-            InstagramUser user = getItem(position);
-
-            TextView usernameText = (TextView) convertView.findViewById(R.id.view_instagram_user_name);
-            usernameText.setText(user.getUsername());
-
-            ImageView userImageView = (ImageView) convertView.findViewById(R.id.view_instagram_user_image);
-            Picasso.with(getContext()).load(user.getProfilePicture()).into(userImageView);
-
-            return convertView;
-        }
     }
 
     private class SwipeTouchListener extends SwipeDismissListViewTouchListener {

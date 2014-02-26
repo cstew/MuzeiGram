@@ -102,10 +102,6 @@ public class InstagramSettingsActivity extends MuzeiGramActivity {
 
         switch (item.getItemId()) {
 
-            case android.R.id.home:
-                finish();
-                return true;
-
             case R.id.action_remove_access:
                 mSettings.saveInstagramToken(null);
                 sendUpdate();

@@ -4,7 +4,7 @@
 
     <item android:id="@+id/activity_instagram_user_chooser_searchview"
           android:title="@string/user_chooser_search_hint"
-          android:showAsAction="always"
-          android:actionViewClass="android.widget.SearchView" />
+          android:icon="@drawable/ic_menu_search_holo_dark"
+          android:showAsAction="always" />
 
 </menu>

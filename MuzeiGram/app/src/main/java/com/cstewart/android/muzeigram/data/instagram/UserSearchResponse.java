@@ -7,26 +7,9 @@ import java.util.List;
 public class UserSearchResponse {
 
     @SerializedName("data")
-    private List<User> mUsers;
+    private List<InstagramUser> mUsers;
 
-    public List<User> getUsers() {
+    public List<InstagramUser> getUsers() {
         return mUsers;
-    }
-
-    public static class User {
-
-        @SerializedName("username")
-        private String mUsername;
-
-        @SerializedName("id")
-        private int mId;
-
-        public String getUsername() {
-            return mUsername;
-        }
-
-        public int getId() {
-            return mId;
-        }
     }
 }

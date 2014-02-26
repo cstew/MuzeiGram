@@ -4,6 +4,7 @@ package com.cstewart.android.muzeigram.data.instagram;
 import retrofit.Callback;
 import retrofit.http.GET;
 import retrofit.http.Path;
+import retrofit.http.Query;
 
 public interface InstagramService {
 
@@ -22,6 +23,6 @@ public interface InstagramService {
     @GET("/v1/users/{userId}/media/recent/")
     MediaResponse getUserPhotos(@Path("userId") int user);
 
-    @GET("/v1/users/search?q={username}/")
-    void getUserAccount(@Path("username") String username, Callback<UserSearchResponse> userResponseCallback);
+    @GET("/v1/users/search")
+    void getUserAccount(@Query("q") String username, Callback<UserSearchResponse> userResponseCallback);
 }

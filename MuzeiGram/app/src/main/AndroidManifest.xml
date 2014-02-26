@@ -40,6 +40,10 @@
 
         <activity
             android:name=".controller.settings.InstagramUserChooserActivity"
+            android:theme="@style/Theme.Muzei.UserChooser" />
+
+        <activity
+            android:name=".controller.settings.InstagramUserSearchActivity"
             android:theme="@style/Theme.Muzei.UserChooser">
 
             <meta-data

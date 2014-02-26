@@ -53,7 +53,7 @@ public class Media {
             return "";
         }
 
-        User user = mCaption.getUser();
+        InstagramUser user = mCaption.getUser();
         if (user == null) {
             return "";
         }
@@ -91,24 +91,14 @@ public class Media {
         private String mText;
 
         @SerializedName("from")
-        private User mUser;
+        private InstagramUser mUser;
 
         public String getText() {
             return mText;
         }
 
-        public User getUser() {
+        public InstagramUser getUser() {
             return mUser;
-        }
-    }
-
-    public class User {
-
-        @SerializedName("username")
-        private String mUsername;
-
-        public String getUsername() {
-            return mUsername;
         }
     }
 }
