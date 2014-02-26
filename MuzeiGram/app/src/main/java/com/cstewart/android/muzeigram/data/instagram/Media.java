@@ -19,6 +19,9 @@ public class Media {
     @SerializedName("caption")
     private Caption mCaption;
 
+    @SerializedName("user")
+    private InstagramUser mUser;
+
     public String getId() {
         return mId;
     }
@@ -49,20 +52,19 @@ public class Media {
     }
 
     public String getUsername() {
-        if (mCaption == null) {
+        if (mUser == null) {
             return "";
         }
 
-        InstagramUser user = mCaption.getUser();
-        if (user == null) {
-            return "";
-        }
-
-        return user.getUsername();
+        return mUser.getUsername();
     }
 
     public boolean isImageType() {
         return "image".equals(mMediaType);
+    }
+
+    public InstagramUser getUser() {
+        return mUser;
     }
 
     public static class ImageContainer {
@@ -90,15 +92,8 @@ public class Media {
         @SerializedName("text")
         private String mText;
 
-        @SerializedName("from")
-        private InstagramUser mUser;
-
         public String getText() {
             return mText;
-        }
-
-        public InstagramUser getUser() {
-            return mUser;
         }
     }
 }

@@ -11,12 +11,25 @@
         android:layout_width="96dp"
         android:layout_height="96dp"/>
 
-    <TextView
-        style="?android:textAppearanceLarge"
-        android:id="@+id/view_instagram_user_name"
-        android:layout_marginLeft="12dp"
+    <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:layout_marginLeft="12dp"
+        android:orientation="vertical">
+
+        <TextView
+            style="?android:textAppearanceLarge"
+            android:id="@+id/view_instagram_user_fullname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            style="?android:textAppearanceMedium"
+            android:id="@+id/view_instagram_user_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
 
 </LinearLayout>

@@ -12,6 +12,7 @@
 
     <string name="activity_instagram_settings_feed_type">Photo Type</string>
     <string name="activity_instagram_settings_update_interval">Update Interval</string>
+    <string name="activity_instagram_settings_no_users">Select users here</string>
 
     <string name="feed_type_popular">Popular</string>
     <string name="feed_type_feed">Feed</string>

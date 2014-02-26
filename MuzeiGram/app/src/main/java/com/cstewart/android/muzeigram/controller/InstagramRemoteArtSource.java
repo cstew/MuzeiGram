@@ -145,6 +145,11 @@ public class InstagramRemoteArtSource extends RemoteMuzeiArtSource {
         List<InstagramUser> instagramUsers = userCollection.getInstagramUsers();
         int userSize = instagramUsers.size();
 
+        if (userSize == 0) {
+            Log.w(TAG, "No users available.");
+            return null;
+        }
+
         Random random = new Random();
         InstagramUser randomUser = instagramUsers.get(random.nextInt(userSize));
 

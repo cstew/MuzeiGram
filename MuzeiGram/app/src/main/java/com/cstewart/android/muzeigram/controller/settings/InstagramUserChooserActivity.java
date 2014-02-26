@@ -20,6 +20,8 @@ import javax.inject.Inject;
 
 public class InstagramUserChooserActivity extends MuzeiGramActivity {
 
+    private static final int REQUEST_SEARCH_USER = 1;
+
     @Inject Settings mSettings;
 
     private InstagramUserCollection mUserCollection;
@@ -53,12 +55,27 @@ public class InstagramUserChooserActivity extends MuzeiGramActivity {
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode != RESULT_OK) {
+            return;
+        }
+
+        if (requestCode == REQUEST_SEARCH_USER) {
+            InstagramUser user = (InstagramUser) data.getSerializableExtra(InstagramUserSearchActivity.EXTRA_INSTAGRAM_USER);
+            mUserCollection.addUser(user);
+            mSettings.saveUserCollection(mUserCollection);
+            saveAndNotifyChange();
+        }
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
 
             case R.id.activity_instagram_user_chooser_searchview:
-                startActivity(InstagramUserSearchActivity.newIntent(this));
+                Intent searchIntent = InstagramUserSearchActivity.newIntent(this);
+                startActivityForResult(searchIntent, REQUEST_SEARCH_USER);
                 return true;
         }
 
@@ -70,6 +87,11 @@ public class InstagramUserChooserActivity extends MuzeiGramActivity {
         List<InstagramUser> users = mUserCollection.getInstagramUsers();
         mAdapter = new UserAdapter(this, users);
         mUserList.setAdapter(mAdapter);
+    }
+
+    private void saveAndNotifyChange() {
+        mSettings.saveUserCollection(mUserCollection);
+        mAdapter.notifyDataSetChanged();
     }
 
     private class SwipeTouchListener extends SwipeDismissListViewTouchListener {
@@ -88,8 +110,7 @@ public class InstagramUserChooserActivity extends MuzeiGramActivity {
                         mAdapter.remove(user);
                         mUserCollection.removeUser(user);
                     }
-                    mSettings.saveUserCollection(mUserCollection);
-                    mAdapter.notifyDataSetChanged();
+                    saveAndNotifyChange();
                 }
             });
         }

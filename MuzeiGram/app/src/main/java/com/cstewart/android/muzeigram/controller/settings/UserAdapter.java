@@ -22,11 +22,14 @@ public class UserAdapter extends ArrayAdapter<InstagramUser> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        final InstagramUser user = getItem(position);
+
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.view_instagram_user, parent, false);
         }
 
-        InstagramUser user = getItem(position);
+        TextView usernameFullNameText = (TextView) convertView.findViewById(R.id.view_instagram_user_fullname);
+        usernameFullNameText.setText(user.getFullName());
 
         TextView usernameText = (TextView) convertView.findViewById(R.id.view_instagram_user_name);
         usernameText.setText(user.getUsername());

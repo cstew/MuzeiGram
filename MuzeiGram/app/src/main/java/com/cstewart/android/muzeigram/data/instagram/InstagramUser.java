@@ -2,12 +2,14 @@ package com.cstewart.android.muzeigram.data.instagram;
 
 import com.google.gson.annotations.SerializedName;
 
-public class InstagramUser {
+import java.io.Serializable;
+
+public class InstagramUser implements Serializable {
 
     @SerializedName("username")
     private String mUsername;
 
-    @SerializedName("userId")
+    @SerializedName("id")
     private int mUserId;
 
     @SerializedName("full_name")

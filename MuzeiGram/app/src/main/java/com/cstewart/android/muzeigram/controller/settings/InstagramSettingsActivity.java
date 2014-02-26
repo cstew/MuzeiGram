@@ -122,7 +122,12 @@ public class InstagramSettingsActivity extends MuzeiGramActivity {
         boolean isCustomType = (feedType == FeedType.CUSTOM);
 
         mCustomUserTextView.setVisibility(isCustomType? View.VISIBLE : View.GONE);
-        mCustomUserTextView.setText(mSettings.getUserCollection().toString());
+
+        String users = mSettings.getUserCollection().toString();
+        if (TextUtils.isEmpty(users)) {
+            users = getString(R.string.activity_instagram_settings_no_users);
+        }
+        mCustomUserTextView.setText(users);
 
         invalidateOptionsMenu();
     }

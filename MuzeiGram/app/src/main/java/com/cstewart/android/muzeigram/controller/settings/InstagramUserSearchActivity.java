@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
 
@@ -24,9 +26,12 @@ import retrofit.client.Response;
 
 public class InstagramUserSearchActivity extends MuzeiGramActivity {
 
+    public static final String EXTRA_INSTAGRAM_USER = "InstagramUserSearchActivity.InstagramUser";
+
     @Inject InstagramService mInstagramService;
 
     private ListView mUserList;
+    private UserAdapter mUserAdapter;
 
     public static Intent newIntent(Context context) {
         return new Intent(context, InstagramUserSearchActivity.class);
@@ -37,6 +42,7 @@ public class InstagramUserSearchActivity extends MuzeiGramActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instagram_user_search);
         mUserList = (ListView) findViewById(R.id.activity_instagram_user_search_list);
+        mUserList.setOnItemClickListener(mUserListItemClickListener);
     }
 
     @Override
@@ -52,6 +58,12 @@ public class InstagramUserSearchActivity extends MuzeiGramActivity {
         searchView.setOnQueryTextListener(mQueryTextListener);
 
         return true;
+    }
+
+    private void sendResult(InstagramUser user) {
+        Intent data = new Intent();
+        data.putExtra(EXTRA_INSTAGRAM_USER, user);
+        setResult(RESULT_OK, data);
     }
 
     private void onQueryChange(String query) {
@@ -70,8 +82,8 @@ public class InstagramUserSearchActivity extends MuzeiGramActivity {
     }
 
     private void setupAdapter(List<InstagramUser> users) {
-        UserAdapter adapter = new UserAdapter(this, users);
-        mUserList.setAdapter(adapter);
+        mUserAdapter = new UserAdapter(this, users);
+        mUserList.setAdapter(mUserAdapter);
     }
 
     private SearchView.OnQueryTextListener mQueryTextListener = new SearchView.OnQueryTextListener() {
@@ -84,6 +96,15 @@ public class InstagramUserSearchActivity extends MuzeiGramActivity {
         public boolean onQueryTextChange(String s) {
             onQueryChange(s);
             return true;
+        }
+    };
+
+    private AdapterView.OnItemClickListener mUserListItemClickListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+            InstagramUser user = mUserAdapter.getItem(position);
+            sendResult(user);
+            finish();
         }
     };
 }
