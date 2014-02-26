@@ -10,4 +10,4 @@ Available on the Google Play Store here: https://play.google.com/store/apps/deta
 App Icon Provided by [Brian Harper](https://twitter.com/bleeharper)
 
 ![Screenshot](https://raw2.github.com/cstew/MuzeiGram/master/art/screenshot1.png)
-![Screenshot](https://raw2.github.com/cstew/MuzeiGram/master/art/screenshot2.png)
+![Screenshot](https://raw2.github.com/cstew/MuzeiGram/master/art/screenshot8.png)
