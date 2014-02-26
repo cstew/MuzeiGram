@@ -59,11 +59,6 @@ public class InstagramSettingsActivity extends MuzeiGramActivity {
     protected void onStart() {
         super.onStart();
         updateUI();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
         sendUpdate();
     }
 
@@ -97,6 +92,7 @@ public class InstagramSettingsActivity extends MuzeiGramActivity {
         if (interval != null) {
             mSettings.setUpdateInterval(interval);
             invalidateOptionsMenu();
+            sendUpdate();
             return true;
         }
 

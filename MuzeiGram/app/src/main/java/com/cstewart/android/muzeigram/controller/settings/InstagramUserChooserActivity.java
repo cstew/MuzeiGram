@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.cstewart.android.muzeigram.R;
 import com.cstewart.android.muzeigram.controller.MuzeiGramActivity;
@@ -65,6 +66,9 @@ public class InstagramUserChooserActivity extends MuzeiGramActivity {
             mUserCollection.addUser(user);
             mSettings.saveUserCollection(mUserCollection);
             saveAndNotifyChange();
+
+            String addedText = getString(R.string.user_chooser_user_added, user.toString());
+            Toast.makeText(this, addedText, Toast.LENGTH_SHORT).show();
         }
     }
 

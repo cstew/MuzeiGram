@@ -35,7 +35,13 @@
     </style>
 
     <style name="Theme.Muzei.UserChooser" parent="android:Theme.Holo.Light.DarkActionBar">
+        <item name="android:actionBarStyle">@style/UserChooser.ActionBar</item>
+    </style>
 
+    <style name="UserChooser.ActionBar" parent="android:Widget.Holo.Light.ActionBar.Solid.Inverse">
+        <item name="android:titleTextStyle">@style/TextAppearance.Muzei.Medium</item>
+        <item name="android:icon">@drawable/ic_launcher</item>
+        <item name="android:displayOptions">homeAsUp|showTitle|showHome</item>
     </style>
 
     <!-- Global -->
