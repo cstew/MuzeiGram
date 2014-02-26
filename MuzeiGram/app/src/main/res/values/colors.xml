@@ -1,3 +1,5 @@
 <resources>
     <color name="user_chooser_background">#111</color>
+
+    <color name="semi_transparent_black">#9000</color>
 </resources>

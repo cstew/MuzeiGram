@@ -1,52 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:gravity="center">
-
-    <Button
-        android:id="@+id/activity_instagram_settings_authorize"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/activity_instagram_settings_authorize"/>
+<com.cstewart.android.muzeigram.view.DrawInsetsFrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:insetBackground="@color/semi_transparent_black">
 
     <LinearLayout
-        android:id="@+id/activity_instagram_settings_detail_container"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/popup_bg"
-        android:gravity="center"
-        android:padding="48dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
 
-        <LinearLayout
+        <Button
+            android:id="@+id/activity_instagram_settings_authorize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:text="@string/activity_instagram_settings_authorize"/>
+
+        <LinearLayout
+            android:id="@+id/activity_instagram_settings_detail_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/semi_transparent_black"
+            android:gravity="center"
+            android:padding="24dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="?android:textAppearanceLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/activity_instagram_settings_feed_type"/>
+
+                <Spinner
+                    style="?android:textAppearanceLarge"
+                    android:id="@+id/activity_instagram_settings_feed_type_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
 
             <TextView
                 style="?android:textAppearanceLarge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/activity_instagram_settings_feed_type"/>
-
-            <Spinner
-                style="?android:textAppearanceLarge"
-                android:id="@+id/activity_instagram_settings_feed_type_spinner"
+                android:textStyle="italic"
+                android:id="@+id/activity_instagram_settings_custom_users"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
-
         </LinearLayout>
 
-        <TextView
-            style="?android:textAppearanceLarge"
-            android:textStyle="italic"
-            android:id="@+id/activity_instagram_settings_custom_users"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+
     </LinearLayout>
-</LinearLayout>
+</com.cstewart.android.muzeigram.view.DrawInsetsFrameLayout>
