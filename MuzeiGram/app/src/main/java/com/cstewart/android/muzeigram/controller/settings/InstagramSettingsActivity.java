@@ -1,9 +1,7 @@
 package com.cstewart.android.muzeigram.controller.settings;
 
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -143,13 +141,9 @@ public class InstagramSettingsActivity extends MuzeiGramActivity {
     }
 
     private void sendUpdate() {
-        // TODO: Is there a better way to do this?
-        Intent updateIntent = new Intent(ProtocolConstants.ACTION_HANDLE_COMMAND)
-                .setComponent(new ComponentName(this, InstagramRemoteArtSource.class))
-                .setData(Uri.fromParts("muzeicommand",
-                        Integer.toString(MuzeiArtSource.BUILTIN_COMMAND_ID_NEXT_ARTWORK), null))
-                .putExtra(ProtocolConstants.EXTRA_COMMAND_ID, MuzeiArtSource.BUILTIN_COMMAND_ID_NEXT_ARTWORK)
-                .putExtra(ProtocolConstants.EXTRA_SCHEDULED, true);
+        Intent updateIntent = new Intent(InstagramSettingsActivity.this, InstagramRemoteArtSource.class);
+        updateIntent.setAction(ProtocolConstants.ACTION_HANDLE_COMMAND);
+        updateIntent.putExtra(ProtocolConstants.EXTRA_COMMAND_ID, MuzeiArtSource.BUILTIN_COMMAND_ID_NEXT_ARTWORK);
         startService(updateIntent);
     }
 
