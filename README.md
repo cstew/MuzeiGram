@@ -1,13 +1,23 @@
 MuzeiGram
 =========
 
-![Screenshot](https://raw2.github.com/cstew/MuzeiGram/master/art/ic_launcher-web.png)
+<a href="https://play.google.com/store/apps/details?id=com.cstewart.android.muzeigram">
+  <img alt="Android app on Google Play"
+       src="https://developer.android.com/images/brand/en_app_rgb_wo_60.png" />
+</a>
 
 Instagram Photos for [Muzei](http://muzei.co)
 
-Available on the Google Play Store here: https://play.google.com/store/apps/details?id=com.cstewart.android.muzeigram
+Photo options include: 
+- A custom set of user's photos
+- Popular photos
+- Photos from your Instagram feed
+- Photos you have liked
+- Your Instagram uploads
+
+![Screenshot](https://raw2.github.com/cstew/MuzeiGram/master/art/ic_launcher-web.png)
 
 App Icon Provided by [Brian Harper](https://twitter.com/bleeharper)
 
 ![Screenshot](https://raw2.github.com/cstew/MuzeiGram/master/art/screenshot1.png)
-![Screenshot](https://raw2.github.com/cstew/MuzeiGram/master/art/screenshot2.png)
+![Screenshot](https://raw2.github.com/cstew/MuzeiGram/master/art/screenshot8.png)
