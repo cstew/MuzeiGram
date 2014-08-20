@@ -32,6 +32,7 @@ public class InstagramAuthorizeActivity extends MuzeiGramActivity {
         mAuthorizeWebView = (WebView) findViewById(R.id.activity_instagram_authorize_webview);
         mAuthorizeWebView.setWebViewClient(mWebViewClient);
 
+        mAuthorizeWebView.getSettings().setJavaScriptEnabled(true);
         mAuthorizeWebView.loadUrl(getAuthorizeUrl());
     }
 
