@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/activity_instagram_user_search_searchview"
         android:title="@string/user_chooser_search_hint"
-        android:showAsAction="always"
-        android:actionViewClass="android.widget.SearchView"/>
+        app:showAsAction="always"
+        app:actionViewClass="android.support.v7.widget.SearchView"/>
 
 </menu>

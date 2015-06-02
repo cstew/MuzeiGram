@@ -4,11 +4,11 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.SearchView;
 
 import com.cstewart.android.muzeigram.R;
 import com.cstewart.android.muzeigram.controller.MuzeiGramActivity;

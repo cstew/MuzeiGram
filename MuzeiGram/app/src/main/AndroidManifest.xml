@@ -39,12 +39,10 @@
         <activity android:name=".controller.InstagramAuthorizeActivity"/>
 
         <activity
-            android:name=".controller.settings.InstagramUserChooserActivity"
-            android:theme="@style/Theme.Muzei.UserChooser" />
+            android:name=".controller.settings.InstagramUserChooserActivity" />
 
         <activity
-            android:name=".controller.settings.InstagramUserSearchActivity"
-            android:theme="@style/Theme.Muzei.UserChooser">
+            android:name=".controller.settings.InstagramUserSearchActivity">
 
             <meta-data
                 android:name="android.app.searchable"

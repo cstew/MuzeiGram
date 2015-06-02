@@ -1,12 +1,12 @@
 package com.cstewart.android.muzeigram.controller;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.cstewart.android.muzeigram.MuzeiGramApplication;
 
-public class MuzeiGramActivity extends Activity {
+public class MuzeiGramActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
