@@ -12,6 +12,10 @@
         android:theme="@style/AppTheme"
         android:name=".MuzeiGramApplication">
 
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="${fabricApiKey}" />
+
         <service
             android:name=".controller.InstagramRemoteArtSource"
             android:icon="@drawable/ic_muzeigram"

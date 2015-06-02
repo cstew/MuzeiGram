@@ -21,3 +21,10 @@ App Icon Provided by [Brian Harper](https://twitter.com/bleeharper)
 
 ![Screenshot](https://raw2.github.com/cstew/MuzeiGram/master/art/screenshot1.png)
 ![Screenshot](https://raw2.github.com/cstew/MuzeiGram/master/art/screenshot8.png)
+
+
+## Build Steps
+- If you want to use crashlytics, set up your API key in `~/.gradle/gradle.properties`:
+```
+MUZEIGRAM_FABRIC_API_KEY = YOUR_API_KEY
+```

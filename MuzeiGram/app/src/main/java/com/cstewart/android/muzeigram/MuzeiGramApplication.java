@@ -3,7 +3,10 @@ package com.cstewart.android.muzeigram;
 import android.app.Application;
 import android.content.Context;
 
+import com.crashlytics.android.Crashlytics;
+
 import dagger.ObjectGraph;
+import io.fabric.sdk.android.Fabric;
 
 public class MuzeiGramApplication extends Application {
 
@@ -16,6 +19,7 @@ public class MuzeiGramApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
 
         mObjectGraph = ObjectGraph.create(new MuzeiGramModule(this));
     }
