@@ -96,6 +96,12 @@ public class InstagramRemoteArtSource extends RemoteMuzeiArtSource {
             token = photo.getId();
             boolean isImage = photo.isImageType();
             boolean isDifferentImage = !TextUtils.equals(token, currentToken);
+
+            if (TextUtils.isEmpty(photo.getUrl())) {
+                // No photo url. I've seen this rarely.
+                continue;
+            }
+
             if (response.getMedia().size() <= 1) {
                 break;
             }
