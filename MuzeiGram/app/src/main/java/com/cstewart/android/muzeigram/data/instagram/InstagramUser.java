@@ -10,7 +10,7 @@ public class InstagramUser implements Serializable {
     private String mUsername;
 
     @SerializedName("id")
-    private int mUserId;
+    private long mUserId;
 
     @SerializedName("full_name")
     private String mFullName;
@@ -29,7 +29,7 @@ public class InstagramUser implements Serializable {
         return mUsername;
     }
 
-    public int getUserId() {
+    public long getUserId() {
         return mUserId;
     }
 
