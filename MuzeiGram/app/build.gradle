@@ -22,7 +22,7 @@ android {
     defaultConfig {
         minSdkVersion 17
         targetSdkVersion 22
-        versionCode 7
+        versionCode 8
         versionName "1.2.0"
 
         manifestPlaceholders = [ fabricApiKey : MUZEIGRAM_FABRIC_API_KEY ]
