@@ -47,7 +47,7 @@ public class MuzeiGramModule {
 
         return new RestAdapter.Builder()
                 .setEndpoint("https://api.instagram.com")
-                .setLogLevel(RestAdapter.LogLevel.FULL) // FIXME: Testing
+                .setLogLevel(RestAdapter.LogLevel.NONE)
                 .setRequestInterceptor(new RequestInterceptor() {
                     @Override
                     public void intercept(RequestFacade requestFacade) {

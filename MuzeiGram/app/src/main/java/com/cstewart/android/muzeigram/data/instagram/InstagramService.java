@@ -21,7 +21,7 @@ public interface InstagramService {
     MediaResponse getPersonalPhotos();
 
     @GET("/v1/users/{userId}/media/recent/")
-    MediaResponse getUserPhotos(@Path("userId") int user);
+    MediaResponse getUserPhotos(@Path("userId") long user);
 
     @GET("/v1/users/search")
     void getUserAccount(@Query("q") String username, Callback<UserSearchResponse> userResponseCallback);

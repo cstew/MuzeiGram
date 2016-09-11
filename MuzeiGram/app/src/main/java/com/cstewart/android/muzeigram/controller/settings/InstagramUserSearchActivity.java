@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,6 +26,7 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 public class InstagramUserSearchActivity extends MuzeiGramActivity {
+    private static final String TAG = "InstagramUserSearchActivity";
 
     public static final String EXTRA_INSTAGRAM_USER = "InstagramUserSearchActivity.InstagramUser";
 
@@ -76,7 +78,7 @@ public class InstagramUserSearchActivity extends MuzeiGramActivity {
 
             @Override
             public void failure(RetrofitError retrofitError) {
-
+                Log.e(TAG, "Search failure", retrofitError);
             }
         });
     }
