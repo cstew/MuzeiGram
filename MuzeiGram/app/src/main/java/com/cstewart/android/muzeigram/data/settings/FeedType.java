@@ -3,11 +3,8 @@ package com.cstewart.android.muzeigram.data.settings;
 import com.cstewart.android.muzeigram.R;
 
 public enum FeedType {
-    CUSTOM(4, R.string.feed_type_custom),
-    POPULAR(0, R.string.feed_type_popular),
-    FEED(1, R.string.feed_type_feed),
-    LIKED(2, R.string.feed_type_liked),
-    PERSONAL(3, R.string.feed_type_personal);
+//    Instagram has all but killed their API. Just personal photos for now.
+    PERSONAL(3, R.string.feed_type_personal),;
 
     private int mIndex;
     private int mTitleResId;
@@ -32,6 +29,6 @@ public enum FeedType {
             }
         }
 
-        return FeedType.CUSTOM;
+        return FeedType.PERSONAL;
     }
 }

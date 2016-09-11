@@ -128,21 +128,9 @@ public class InstagramRemoteArtSource extends RemoteMuzeiArtSource {
 
         switch (feedType) {
 
-            case CUSTOM:
-                return getCustomMediaResponse();
-
-            case FEED:
-                return mInstagramService.getFeedPhotos();
-
-            case LIKED:
-                return mInstagramService.getLikedPhotos();
-
+            default:
             case PERSONAL:
                 return mInstagramService.getPersonalPhotos();
-
-            default:
-            case POPULAR:
-                return mInstagramService.getPopularPhotos();
         }
     }
 

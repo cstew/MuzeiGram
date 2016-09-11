@@ -3,6 +3,7 @@
     <string name="app_description">Photos from Instagram</string>
 
     <string name="unauthorized_access_description">Authorize Instagram access in the settings below</string>
+    <string name="apology_text">Instagram has limited what 3rd party apps can do. For now, you can only use your personal photos as an art source.</string>
 
     <string name="default_image_title">Bro the cat</string>
     <string name="default_image_byline">Use the \"Authorize Instagram Access\" button in the plugin settings to enable Instagram access.</string>
@@ -10,7 +11,7 @@
     <string name="activity_instagram_settings_authorize">Authorize Instagram Access</string>
     <string name="activity_instagram_settings_authorize_set">Access Authorized</string>
 
-    <string name="activity_instagram_settings_feed_type">Photo Type</string>
+    <string name="activity_instagram_settings_feed_type">Source</string>
     <string name="activity_instagram_settings_update_interval">Update Interval</string>
     <string name="activity_instagram_settings_no_users">Select users here</string>
 

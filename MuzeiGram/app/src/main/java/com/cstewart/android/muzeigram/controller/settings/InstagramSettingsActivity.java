@@ -113,7 +113,7 @@ public class InstagramSettingsActivity extends MuzeiGramActivity {
         mAuthorizeButton.setVisibility(isAuthorized? View.GONE : View.VISIBLE);
 
         FeedType feedType = mSettings.getFeedType();
-        boolean isCustomType = (feedType == FeedType.CUSTOM);
+        boolean isCustomType = false;
 
         mCustomUserTextView.setVisibility(isCustomType? View.VISIBLE : View.GONE);
 
